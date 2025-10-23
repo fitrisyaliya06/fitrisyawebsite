@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .welcome-card {
+        background: #fff;
+        padding: 50px 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 450px;
+        width: 90%;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .welcome-card h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 15px;
+      }
+
+      .welcome-card p {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 30px;
+      }
+
+      .btn-custom {
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .btn-custom:hover {
+        transform: scale(1.05);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="welcome-card">
+      <h1>Welcome!</h1>
+      <p id="welcomeMessage">No registered user found. You can sign up from the home page.</p>
+
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-outline-secondary btn-custom" id="backLogin">Back to Login Page</button>
+        <button class="btn btn-primary btn-custom" id="goHome">Go to Home</button>
+      </div>
+    </div>
+
+    <script>
+      // Get session username
+      const sessionUser = localStorage.getItem("sessionUser");
+
+      // Show personalized message
+      if (sessionUser) {
+        document.getElementById("welcomeMessage").innerText = 
+          "Welcome, " + sessionUser + "! You have successfully logged in.";
+      }
+
+      // Back to login button
+      document.getElementById("backLogin").addEventListener("click", function() {
+        localStorage.removeItem("sessionUser");
+        window.location.href = "indexjtmk.html";
+      });
+
+      // Go home button
+      document.getElementById("goHome").addEventListener("click", function() {
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>
